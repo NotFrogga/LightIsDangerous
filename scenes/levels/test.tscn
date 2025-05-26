@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpf3cl3gnhlxv"]
+[gd_scene load_steps=6 format=3 uid="uid://cpf3cl3gnhlxv"]
 
 [ext_resource type="PackedScene" uid="uid://basim08he675u" path="res://scenes/player/moth.tscn" id="1_8153q"]
 [ext_resource type="PackedScene" uid="uid://cqdetvg46ofnb" path="res://scenes/obstacles/block.tscn" id="2_52kye"]
 [ext_resource type="PackedScene" uid="uid://c2txvgm0owadh" path="res://scenes/object.tscn" id="3_yp2xm"]
+[ext_resource type="PackedScene" uid="uid://d3agm4msllpu5" path="res://scenes/round_object.tscn" id="4_uyl1e"]
 
 [sub_resource type="GDScript" id="GDScript_yp2xm"]
 script/source = "extends Camera2D
@@ -24,5 +25,8 @@ collision_mask = 4
 position = Vector2(-13, 194)
 
 [node name="Object" parent="." instance=ExtResource("3_yp2xm")]
-position = Vector2(-6, 30)
+position = Vector2(35, 65)
 collision_mask = 5
+
+[node name="Object2" parent="." instance=ExtResource("4_uyl1e")]
+position = Vector2(-44, 35)
