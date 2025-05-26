@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsvesydtobloy"]
+
+[ext_resource type="PackedScene" uid="uid://basim08he675u" path="res://scenes/player/moth.tscn" id="1_b2cq8"]
+[ext_resource type="PackedScene" uid="uid://cqdetvg46ofnb" path="res://scenes/obstacles/block.tscn" id="2_xb4v1"]
+[ext_resource type="Texture2D" uid="uid://coit3ogekjxmm" path="res://assets/Sprite-0001.png" id="3_urvlt"]
+
+[sub_resource type="GDScript" id="GDScript_d4w6o"]
+script/source = "extends Camera2D
+"
+
+[sub_resource type="Curve" id="Curve_oi3di"]
+_limits = [-300.0, 300.0, -1.0, 1.0]
+_data = [Vector2(-1, -300), 0.0, 0.0, 0, 0, Vector2(-0.736138, -265.057), 248.34, 248.34, 0, 0, Vector2(-0.499044, -165.341), 440.894, 440.894, 0, 0, Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.499044, 59.0198), 226.352, 226.352, 0, 0, Vector2(0.776291, 196.129), 681.717, 681.717, 0, 0, Vector2(0.992352, 300), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2txt"]
+size = Vector2(52, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ainy"]
+size = Vector2(53, 77)
+
+[node name="Level" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(88, 48)
+zoom = Vector2(0.6, 0.6)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+script = SubResource("GDScript_d4w6o")
+
+[node name="Moth" parent="." instance=ExtResource("1_b2cq8")]
+position = Vector2(-879, 326)
+lock_rotation = true
+linear_damp = 2.0
+offset_curve = SubResource("Curve_oi3di")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_xb4v1")]
+position = Vector2(-879, 47)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("2_xb4v1")]
+position = Vector2(8, 563)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("2_xb4v1")]
+position = Vector2(8, 404)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("2_xb4v1")]
+position = Vector2(8, 246)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("2_xb4v1")]
+position = Vector2(8, 88)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("2_xb4v1")]
+position = Vector2(345, -340)
+
+[node name="StaticBody2D8" parent="." instance=ExtResource("2_xb4v1")]
+position = Vector2(708, 127)
+
+[node name="StaticBody2D9" parent="." instance=ExtResource("2_xb4v1")]
+position = Vector2(950, -500)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("2_xb4v1")]
+position = Vector2(-874, 564)
+
+[node name="Object" type="RigidBody2D" parent="."]
+position = Vector2(0, -17.595)
+mass = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="Object"]
+scale = Vector2(3, 3)
+texture = ExtResource("3_urvlt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Object"]
+shape = SubResource("RectangleShape2D_f2txt")
+debug_color = Color(0.998109, 0, 0.150301, 0.42)
+
+[node name="GrabArea" type="Area2D" parent="Object"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Object/GrabArea"]
+position = Vector2(0.5, -14.5)
+shape = SubResource("RectangleShape2D_1ainy")
+debug_color = Color(0.492892, 0.583552, 1.92523e-07, 0.42)

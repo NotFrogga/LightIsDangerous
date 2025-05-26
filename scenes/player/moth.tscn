@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://basim08he675u"]
+
+[ext_resource type="Script" uid="uid://bfliwc8dghxcx" path="res://scenes/player/moth.gd" id="1_3bc02"]
+[ext_resource type="Texture2D" uid="uid://bt56yhvgrmi7y" path="res://icon.svg" id="1_27pky"]
+
+[sub_resource type="Curve" id="Curve_3bc02"]
+_limits = [0.0, 60.0, 0.0, 3.0]
+_data = [Vector2(0, 0.00110304), 0.0, 0.0, 0, 0, Vector2(0.083, 35), 62.6535, 62.6535, 0, 0, Vector2(0.372781, 43.1461), 5.74582, 5.74582, 0, 0, Vector2(2.982, 45), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_count = 5
+
+[sub_resource type="Curve" id="Curve_fog0t"]
+_limits = [0.0, 5.0, 0.0, 0.02]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.02, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3bc02"]
+radius = 33.0
+height = 66.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bc02"]
+size = Vector2(59, 41)
+
+[node name="Moth" type="RigidBody2D"]
+mass = 0.1
+gravity_scale = 0.0
+script = ExtResource("1_3bc02")
+speed_curve = SubResource("Curve_3bc02")
+damping_curve = SubResource("Curve_fog0t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_27pky")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_3bc02")
+
+[node name="GrabDetectionArea" type="Area2D" parent="."]
+collision_mask = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabDetectionArea"]
+position = Vector2(-1.5, 53.5)
+shape = SubResource("RectangleShape2D_3bc02")
+debug_color = Color(0.492515, 0.583671, 9.62615e-07, 0.42)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+angular_limit_enabled = true
+angular_limit_lower = -1.5708
+angular_limit_upper = 1.5708
