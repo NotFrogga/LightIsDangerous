@@ -23,5 +23,11 @@ debug_color = Color(0.728605, 0.23715, 1, 0.42)
 [node name="CooldownBeforeAttraction" type="Timer" parent="."]
 one_shot = true
 
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 0.537255)
+scale = Vector2(5, 5)
+texture = ExtResource("1_mrtv2")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="CooldownBeforeAttraction" to="." method="_on_cooldown_before_attraction_timeout"]

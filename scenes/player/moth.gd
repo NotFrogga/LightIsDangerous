@@ -1,6 +1,8 @@
 extends RigidBody2D
 class_name Player
 
+enum PlayerState { MOVE, CARRY, PULLED_BY_LIGHT }
+
 @export var speed_curve : Curve
 @export var damping_curve : Curve
 var timer_input_speed_pressed: float = 0
@@ -13,6 +15,11 @@ var object_attached_path : NodePath = NodePath("")
 var timer_input_camera_offset : float = 0
 
 var additional_velocity : Vector2 = Vector2.ZERO
+var current_state : PlayerState = PlayerState.MOVE
+
+
+func set_state(new_state : PlayerState) -> void:
+	current_state = new_state
 
 func get_input() -> Vector2:
 	return Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -80,4 +87,3 @@ func grab_object() -> void:
 
 func light_attract(gravity_center : Vector2, pulling_force : float) :
 	additional_velocity = (gravity_center - global_position).normalized() * pulling_force / sqrt(global_position.distance_to(gravity_center))
-	print(additional_velocity)
