@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpf3cl3gnhlxv"]
+
+[ext_resource type="PackedScene" uid="uid://basim08he675u" path="res://scenes/player/moth.tscn" id="1_8153q"]
+[ext_resource type="PackedScene" uid="uid://cqdetvg46ofnb" path="res://scenes/obstacles/block.tscn" id="2_52kye"]
+[ext_resource type="PackedScene" uid="uid://c2txvgm0owadh" path="res://scenes/object.tscn" id="3_yp2xm"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Moth" parent="." instance=ExtResource("1_8153q")]
+position = Vector2(619, 227)
+collision_mask = 4
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_52kye")]
+position = Vector2(620, 545)
+
+[node name="Object" parent="." instance=ExtResource("3_yp2xm")]
+position = Vector2(626, 425)
+collision_mask = 5

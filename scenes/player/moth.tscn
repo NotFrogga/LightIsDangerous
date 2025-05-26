@@ -24,6 +24,7 @@ size = Vector2(59, 41)
 [node name="Moth" type="RigidBody2D"]
 mass = 0.1
 gravity_scale = 0.0
+lock_rotation = true
 script = ExtResource("1_3bc02")
 speed_curve = SubResource("Curve_3bc02")
 damping_curve = SubResource("Curve_fog0t")
