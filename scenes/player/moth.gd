@@ -17,6 +17,8 @@ var timer_input_camera_offset : float = 0
 var additional_velocity : Vector2 = Vector2.ZERO
 var current_state : PlayerState = PlayerState.MOVE
 
+@onready var ANIMATION_PLAYER = $AnimationPlayer
+@onready var SPRITE_2D = $Sprite2D
 
 func set_state(new_state : PlayerState) -> void:
 	current_state = new_state
@@ -24,8 +26,12 @@ func set_state(new_state : PlayerState) -> void:
 func get_input() -> Vector2:
 	return Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
+func _ready() -> void:
+	ANIMATION_PLAYER.play("fly")
+
 func _process(delta: float) -> void:
-	print($PinJoint2D.node_b)
+	set_flip_sprite_2d()
+	
 	set_speed_domain(delta)
 	set_damping_domain(delta)
 	set_damping()
@@ -34,6 +40,12 @@ func _process(delta: float) -> void:
 	
 	#set_camera_offset_domain(delta)
 	#offset_camera()
+
+func set_flip_sprite_2d() :
+	if linear_velocity.x > 0 :
+		SPRITE_2D.flip_h = false
+	else :
+		SPRITE_2D.flip_h = true
 
 func set_speed_domain(delta) -> void:
 	if get_input() == Vector2.ZERO:
